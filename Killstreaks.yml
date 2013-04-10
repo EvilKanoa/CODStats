@@ -1,0 +1,5 @@
+#You need a space after each comma (IE: ", " works but "," doesn't).
+#Format like so: 'Killstreak Name, Needed Kills, Command'.
+Killstreaks:
+    - 'Sword, 2, /give {player} stone_sword 1'
+    - 'Diamond, 3, /give {player} diamond 3'

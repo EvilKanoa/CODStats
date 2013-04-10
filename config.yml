@@ -1,0 +1,11 @@
+trackDeathByMob: false
+canTrackOtherStats: true
+killstreakMessage: 'You have reached {kills} kills, which gives you a {killstreak}.'
+useMySQL: false
+#if useMySQL is true make sure you fill in these fields
+MySQL:
+    address: ''
+    database: ''
+    username: ''
+    password: ''
+    port: '3306'

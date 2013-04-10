@@ -1,0 +1,34 @@
+name: CODStats
+main: ca.kanoa.CODStats.CODStats
+version: 0.1
+author: 12323op
+description: Basic PVP stats tracking
+permissions:
+    cod.check:
+        description: Allows viewing of pvp stats
+        children:
+            cod.check.self: true
+            cod.check.other: true
+    cod.check.self:
+        description: Allows viewing your own pvp stats
+        default: op
+    cod.check.other:
+        description: Allows viewing someone elses pvp stats
+        default: op
+    cod.track:
+        description: Allows tracking of pvp stats
+        default: true
+    cod.admin:
+        description: Allows use of the admin commands
+        default: op
+commands:
+    pvp:
+        description: Check pvp stats
+        usage: /pvp <user>
+        aliases: [pvpstats, stats, stat]
+    pvpa:
+        description: CODStats admin command
+        usage: /pvpa <arguments>
+        aliases: [pvpadmin, statadmin, statsadmin]
+        permission: cod.admin
+        permission-message: You don't have permission!
