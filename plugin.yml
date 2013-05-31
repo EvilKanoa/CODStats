@@ -1,6 +1,6 @@
 name: CODStats
 main: ca.kanoa.CODStats.CODStats
-version: 0.1
+version: 0.11
 author: 12323op
 description: Basic PVP stats tracking
 permissions:

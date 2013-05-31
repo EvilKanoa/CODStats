@@ -1,6 +1,7 @@
 trackDeathByMob: false
 canTrackOtherStats: true
 killstreakMessage: 'You have reached {kills} kills, which gives you a {killstreak}.'
+prefixChatWithKDR: true;
 useMySQL: false
 #if useMySQL is true make sure you fill in these fields
 MySQL:

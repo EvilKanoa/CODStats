@@ -5,6 +5,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 
 import ca.kanoa.CODStats.CODStats;
 import ca.kanoa.CODStats.Killstreak;
@@ -12,10 +13,12 @@ import ca.kanoa.CODStats.Stats;
 
 public class EventListener implements Listener{
 
-	CODStats plugin;
+	final private CODStats plugin;
+	final private boolean prefix;
 
-	public EventListener(CODStats plugin){
+	public EventListener(CODStats plugin, boolean prefix){
 		this.plugin = plugin;
+		this.prefix = prefix;
 	}
 
 	@EventHandler(priority = EventPriority.MONITOR)
@@ -39,5 +42,11 @@ public class EventListener implements Listener{
 		}
 		else if(plugin.trackDeathByMob && player.hasPermission("cod.track"))
 			plugin.getStatsForPlayer(player).addDeath();
+	}
+	
+	@EventHandler(priority = EventPriority.HIGHEST)
+	public void onPlayerChat (AsyncPlayerChatEvent event) {
+		if (this.prefix && !event.isCancelled())
+			event.setFormat("[" + plugin.getStatsForPlayer(event.getPlayer()).getKDR() + "]" + event.getFormat());
 	}
 }

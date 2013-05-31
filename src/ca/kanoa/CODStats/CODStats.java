@@ -50,21 +50,22 @@ public class CODStats extends JavaPlugin{
 		Commands CE = new Commands(this);
 		this.getCommand("pvp").setExecutor(CE);
 		this.getCommand("pvpa").setExecutor(CE);
-		this.getServer().getPluginManager().registerEvents(new EventListener(this), this);
+		this.getServer().getPluginManager().registerEvents(new EventListener(this, config.getBoolean("prefixChatWithKDR")), this);
 
 		getLogger().info("Enabled!");
 	}
 
 	private void loadKillstreaksFromConfig() {
 		List<String> list = killstreakConfig.getStringList("Killstreaks");
-		final String split = ", ";
+		final String split = ",";
 
 		for(String s : list){
+			String[] string = s.replace(", ", ",").split(split);
 			try{
-				killstreaks.add(new Killstreak(s.split(split)[0], Integer.parseInt(s.split(split)[1]), new Command(s.split(split)[2])));
-			} catch (ArrayIndexOutOfBoundsException aioobe){
+				killstreaks.add(new Killstreak(string[0], Integer.parseInt(string[1]), new Command(string[2])));
+			} catch (ArrayIndexOutOfBoundsException e){
 				getLogger().warning("Found badly formated killstreak near: '" + s + "'");
-			} catch (NumberFormatException nfe){
+			} catch (NumberFormatException e){
 				getLogger().warning("Could not find a number in the needed kills section near: '" + s + "'");
 			} catch (Exception e){
 				if(debug) e.printStackTrace();
